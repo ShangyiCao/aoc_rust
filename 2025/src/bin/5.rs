@@ -1,4 +1,5 @@
 use std::cmp;
+use std::env;
 use std::fs;
 
 #[derive(Clone, Copy, Debug)]
@@ -17,10 +18,8 @@ fn merge_ranges(range1: &mut Range, range2: Range) {
 }
 
 fn main() {
-    let file = fs::read_to_string(
-        "/home/shangyi/Documents/personal/hobbies/code/aoc/input/2025/5/input.txt",
-    )
-    .expect("unable to read file");
+    let filename = env::args().nth(1).expect("invalid file name");
+    let file = fs::read_to_string(filename).expect("unable to read file");
 
     let (ranges_str, ingredients_str): (&str, &str) = file
         .split_once("\n\n")
@@ -48,11 +47,11 @@ fn main() {
 
     let mut counter1 = 0;
     for ingredient in ingredients {
-        for range in &ranges {
-            if ingredient >= range.a && ingredient <= range.b {
-                counter1 += 1;
-                break;
-            }
+        if ranges
+            .iter()
+            .any(|range| range.a <= ingredient && range.b >= ingredient)
+        {
+            counter1 += 1;
         }
     }
     println!("{counter1}");
