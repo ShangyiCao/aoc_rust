@@ -8,7 +8,7 @@ struct Range {
 }
 
 fn disjoint(range1: &Range, range2: &Range) -> bool {
-    return range1.b < range2.a || range1.a > range2.b;
+    range1.b < range2.a || range1.a > range2.b
 }
 
 fn merge_ranges(range1: &mut Range, range2: Range) {

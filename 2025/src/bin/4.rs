@@ -7,7 +7,7 @@ struct Point {
 }
 
 fn is_inside(i: i32, j: i32, nx: i32, ny: i32) -> bool {
-    return 0 <= i && i < nx && 0 <= j && j < ny;
+    0 <= i && i < nx && 0 <= j && j < ny
 }
 fn main() {
     let filename = env::args().nth(1).expect("invalid index");

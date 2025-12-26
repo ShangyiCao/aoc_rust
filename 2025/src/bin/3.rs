@@ -27,7 +27,7 @@ fn find_combo(line: &str, nx: i32, digits: i32) -> i64 {
     for i in 0..digits {
         result = result * 10 + maxes[i as usize] as i64;
     }
-    return result;
+    result
 }
 
 fn main() {
